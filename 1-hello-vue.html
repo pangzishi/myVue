@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <p>{{msg}}</p>
+    </div>
+    <br>
+     <button >按钮</button>
+    <script src="./js/vue.js"></script>
+    <script>
+        let msg="hello Vue"
+        let count=0
+        const btn =document.querySelector("button")
+        // 引入Vue后，全局有一个Vue构造函数，传入一个配置对象
+        btn.onclick=function(){
+            count++;
+            msg=msg+count
+            console.log(msg)
+        }
+        new Vue({
+            el:"#root",//elment 用的是querySelector选择元素
+            data:{
+                msg,
+            }
+        })
+    </script>
+</body>
+</html>
