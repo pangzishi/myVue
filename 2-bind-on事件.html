@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div  id="root">
+        <h3>v-bind指令， 绑定数据</h3 >
+        <input value="name"></input>
+        <!-- v-bind:属性名="插值表达式"  绑定数据，model=>view  -->
+        <input v-bind:value="name"></input>
+        <!--简写 :属性名="插值表达式"  绑定数据，model=>view  -->
+        <input :value="name"></input>
+        <h3>v-on指令， 绑定事件</h3 >
+        <!--  v-on:事件名="回调函数"   -->
+        <button v-on:click="clickhandel">按钮</button>
+        <!--简写 @事件名="回调函数"  -->
+        <button @mousemove="mousemovehandel">按钮</button>
+    </div>
+    <script src="./js//vue.js"></script>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                name:"zhangsan"
+            },
+            methods:{
+                clickhandel(event){
+                    console.log("点击",event)
+                    console.log(this)
+                },
+                mousemovehandel(event){
+                    console.log("鼠标移动",event)
+                    console.log(this)
+                },
+            }
+        })
+    </script>
+</body>
+</html>

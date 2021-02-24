@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+    1. 列表显示
+    数组: v-for / index
+    对象: v-for / key
+    2. 列表的更新显示
+    删除item
+    替换item
+    -->
+
+    <div id="app">
+        <p>列表渲染==遍历数组</p>
+        <ul>
+            <li v-for="(person) in persons" :key="person.id">
+                {{person.id}}---{{person.name}}---{{person.age}}
+            </li>
+        </ul>
+        <p>列表渲染==遍历对象</p>
+        <ul>
+            <li v-for="(vaule,key) in personObj" :key="key">
+                {{vaule}}---{{key}}
+            </li>
+        </ul>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        /*
+            v-model 用于双向数据绑定
+            v-bind 用于强制绑定数据（单向数据绑定）
+            简写： :
+            v-on 用于绑定事件
+            简写： @
+            v-if / v-else-if / v-else 用于条件渲染（切换显示）
+            v-show 用于条件渲染（切换显示） 
+            v-for 用于列表渲染（遍历） 
+        */
+        new Vue({
+            el: "#app",
+            data: {
+                persons: [
+                    { id: 1, name: 'jack', age: 18 },
+                    { id: 2, name: 'rose', age: 16 },
+                    { id: 3, name: 'tom', age: 20 },
+                    { id: 4, name: 'jerry', age: 23 },
+                    { id: 5, name: 'peiqi', age: 24 },
+                    { id: 6, name: 'peihua', age: 10 },
+                ],
+                personObj: {
+                    name: "zhangsan",
+                    age: 23
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!--
+      1. 条件渲染指令
+        v-if
+        v-else
+        v-show
+      2. 比较v-if与v-show
+        如果需要频繁切换 v-show 较好
+      -->
+    <div id="root">
+          <!-- 
+        v-if 和 v-show 都能切换显示
+          不同的是 v-if 隐藏时会删除掉这个DOM元素 
+          而 v-show 隐藏时是通过样式display: none来隐藏元素
+            v-show性能比v-if更好
+            所以: 频繁切换用v-show较好
+       -->
+        <p>条件渲染</p>
+        <p v-if="flag%2===0">佩奇</p>
+        <p v-else-if="flag%3===0">汤姆</p>
+        <p v-else>杰克</p>
+        <p v-show="flag%5!==0">肉丝</p>
+        
+        <button @click="changeFlag">按钮</button>
+         <!-- 
+        如果回调函数只有一条语句，可以直接写，省略函数
+        注意：不能写this，自己会自动去this上找
+       -->
+    </div>
+    <script src="./js//vue.js"></script>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                flag:0
+            },
+            methods:{
+                changeFlag(){
+                    this.flag=this.flag+1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

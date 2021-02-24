@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="searchName">
+        <ul>
+            <li v-for="(person) in filterPerson" :key="person.id">
+                {{person.id}}---{{person.name}}---{{person.age}}
+            </li>
+        </ul>
+        <button @click="typesort='asc'">年龄升序</button>
+        <button @click="typesort='desc'">年龄降序</button>
+        <button @click="typesort='origin'">原本顺序</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                persons: [
+                    { id: 1, name: 'jack', age: 18 },
+                    { id: 2, name: 'rose', age: 16 },
+                    { id: 3, name: 'tom', age: 20 },
+                    { id: 4, name: 'jerry', age: 23 },
+                    { id: 5, name: 'peiqi', age: 24 },
+                    { id: 6, name: 'peihua', age: 10 },
+                ],
+                typesort:"origin",
+                searchName:"",
+            },
+           
+            computed:{
+                filterPerson(){
+                    const filterPerson=this.persons.filter(person=>{
+                        return person.name.includes(this.searchName)
+                    })
+                    if(this.typesort==="origin") return filterPerson;
+                    filterPerson.sort((a,b)=>{
+                        return this.typesort==="asc"?a.age-b.age:b.age-a.age
+                    })
+                    return filterPerson
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>
