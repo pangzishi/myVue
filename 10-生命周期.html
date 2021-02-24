@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <p v-show="isShow">巴厘岛把东北部</p>
+        <button @click="isShow=!isShow">按钮</button>
+        <button @click="$destroy()">卸载</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        /*
+    Vue的生命周期函数：https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90
+      1. 挂载阶段（初始化阶段）: 一上来自动触发
+        beforeCreate
+          在数据代理之前触发的
+          此时还不能通过this访问数据(data)
+        created
+        beforeMount
+        mounted
+          页面渲染完毕了，此时才能操作DOM
+          发送请求、设置定时器、绑定事件等一次性任务
+
+      2. 更新阶段：更新data数据才会触发
+        beforeUpdate
+        updated
+      3. 卸载阶段：this.$destroy()才会触发
+        beforeDestroy 
+          做一些收尾工作：清除定时器、解绑事件
+        destroyed
+  */
+        new Vue({
+            el: "#root",
+            data: {
+                isShow: true
+            },
+            beforeCreate() {
+                // 在创建之前时还不能访问数据（data、methods、computed）
+                // 数据代理：将data、methods、computed中的数据代理this上
+                // beforeCreate是再数据代理之前触发的
+                console.log("beforeCreate()")
+            },
+            created() {
+                console.log("created()")
+            },
+            beforeMount() {
+                console.log("beforeMount()")
+            },
+            mounted() {
+                console.log("Mounted()")
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate()")
+            },
+            updated() {
+                console.log("updated()")
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy()")
+            },
+            destroyed() {
+                console.log("destroyed()")
+            },
+        })
+    </script>
+</body>
+
+</html>

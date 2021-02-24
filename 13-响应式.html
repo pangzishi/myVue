@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(value,key) in person">{{value}}-----{{key}}</li>
+        </ul>
+        <button @click="changePerson">按钮</button>
+        <ul>
+            <li v-for="perosn in persons" :key="perosn.id">{{perosn.name}}-----{{perosn.age}}</li>
+        </ul>
+        <button @click="changePersons">按钮</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                person:{
+                    name:"zhangsan",
+                    age:12
+                },
+                persons:[
+                    {id:1,name:"zhangsan",age:23},
+                    {id:2,name:"lisi",age:32},
+                ]
+            },
+            methods:{
+                changePerson(){
+                    // console.log(this)
+                     /*
+                        data中原有所有属性都是响应式的，新添加的属性就不是响应式的
+                        注意：
+                            不要给对象添加新属性
+                            如果需要给对象添加新属性 this.$set
+                            不要在数组通过下标去添加新值或新属性
+                            如果需要给数组添加新值，用push等方法
+                     */
+                    // this.person.name="lisi" //可以，是响应式的
+                    // this.person.age=25  //可以，是响应式的
+                    // this.person.sex="男"    //不可以，不响应
+                    // this.$set(this.person,"sex","男") //可以，是响应式的
+                    Vue.set(this.person,"sex","男") //可以，是响应式的
+                },
+                changePersons(){
+                    // this.persons[0].name="huiwei" //可以，是响应式的
+                    // this.persons[0].age=55 //可以，是响应式的
+                    // this.persons[2]={id:3,name:"wangwu",age:33} //不可以，不响应
+                    
+                     // 数组的变更方法：Vue重写了数组的方法，所以能变成响应式
+                    this.persons.push({id:3,name:"wangwu",age:33})//可以，是响应式的
+                }
+            }
+        })
+    </script>
+</body>
+</html>
